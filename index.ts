@@ -70,12 +70,61 @@
 // console.log(rect.area());
 // console.log(rect.info());
 
-// 4. Method Chaining
-class Rectangle {
+// // 4. Method Chaining
+// class Rectangle {
+//   width: number;
+//   height: number;
+
+//   constructor(width: number, height: number) {
+//     this.width = width;
+//     this.height = height;
+//   }
+//   area(): number {
+//     return this.height * this.width;
+//   }
+
+//   info(): string {
+//     return "this is a Rectangle";
+//   }
+
+//   scale(num: number) {
+//     this.height += num;
+//     return this;
+//   }
+
+//   static combine(rect1: Rectangle, rect2: Rectangle): Rectangle {
+//     const newWidth = rect1.width + rect2.width;
+//     const newHeight = rect1.height + rect2.height;
+//     return new Rectangle(newWidth, newHeight);
+//   }
+// }
+
+// const rect1 = new Rectangle(5, 6);
+// console.log(`area of rect1: ${rect1.scale(7).area()}`);
+
+// const rect2 = new Rectangle(8, 4);
+// console.log(`area of rect2: ${rect2.scale(3).area()}`);
+
+// const combinedRect = Rectangle.combine(rect1, rect2);
+// console.log(`area of rect1 and rect2: ${combinedRect.area()}`);
+
+// 5. Shape with draw method
+class Shape {
+  info(): string {
+    return "This is a Shape";
+  }
+
+  draw(): void {
+    console.log("drawing a shape");
+  }
+}
+
+class Rectangle extends Shape {
   width: number;
   height: number;
 
   constructor(width: number, height: number) {
+    super();
     this.width = width;
     this.height = height;
   }
@@ -83,29 +132,49 @@ class Rectangle {
     return this.height * this.width;
   }
 
-  info(): string {
-    return "this is a Rectangle";
-  }
-
-  scale(num: number) {
-    this.height += num;
-    return this;
-  }
-
-  static combine(rect1: Rectangle, rect2: Rectangle): Rectangle {
-    const newWidth = rect1.width + rect2.width;
-    const newHeight = rect1.height + rect2.height;
-    return new Rectangle(newWidth, newHeight);
+  draw(): void {
+    console.log("drawing a Rectangle");
   }
 }
 
-const rect1 = new Rectangle(5, 6);
-console.log(`area of rect1: ${rect1.scale(7).area()}`);
+class Square extends Shape {
+  width: number;
 
-const rect2 = new Rectangle(8, 4);
-console.log(`area of rect2: ${rect2.scale(3).area()}`);
+  constructor(width: number) {
+    super();
+    this.width = width;
+  }
+  area() {
+    return this.width ** 2;
+  }
+  draw(): void {
+    console.log("drawing a Square");
+  }
+}
 
-const combinedRect = Rectangle.combine(rect1, rect2);
-console.log(`area of rect1 and rect2: ${combinedRect.area()}`);
+class Circle extends Shape {
+  r: number;
 
-// 5. Shape with draw method
+  constructor(r: number) {
+    super();
+    this.r = r;
+  }
+  area(): number {
+    return Math.PI * this.r ** 2;
+  }
+  draw(): void {
+    console.log("drawing a Circle");
+  }
+}
+
+
+function renderShapes(shapes: Shape[]): void {
+  for (const shape of shapes) {
+    shape.draw();
+  }
+}
+
+const shapes: Shape[] = [new Circle(4), new Rectangle(4, 6), new Square(2)];
+
+renderShapes(shapes);
+console.log(new Circle(4).area());
