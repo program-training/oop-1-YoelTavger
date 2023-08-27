@@ -13,10 +13,23 @@ class Rectangle {
     return this.height * this.width;
   }
 }
-const rectangle = new Rectangle(5, 7);
-console.log(rectangle.area());
+const rect = new Rectangle(5, 7);
+console.log(rect.area());
 
 //  2. Square - ריבוע
+class Square extends Rectangle {
+  sidesqure: number;
+
+  constructor(sidesqure: number) {
+    super(sidesqure, sidesqure);
+    this.sidesqure = sidesqure;
+  }
+  area(): number {
+    return this.sidesqure ** 2;
+  }
+}
+const square = new Square(3);
+console.log(square.area());
 
 // 3. Shape - צורה
 
