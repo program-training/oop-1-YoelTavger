@@ -31,19 +31,51 @@
 // const square = new Square(3);
 // console.log(square.area());
 
-// 3. Shape - צורה
-class Shape {
-  info(): string {
-    return "This is a Shape";
-  }
-}
+// // 3. Shape - צורה
+// class Shape {
+//   info(): string {
+//     return "This is a Shape";
+//   }
+// }
 
-class Rectangle extends Shape {
+// class Rectangle extends Shape {
+//   width: number;
+//   height: number;
+
+//   constructor(width: number, height: number) {
+//     super();
+//     this.width = width;
+//     this.height = height;
+//   }
+//   area(): number {
+//     return this.height * this.width;
+//   }
+
+//   info(): string {
+//     return "this is a Rectangle";
+//   }
+// }
+// class ColoredRectangle extends Rectangle {
+//   color: string;
+
+//   constructor(width: number, height: number, color: string) {
+//     super(width, height);
+//     this.color = color;
+//   }
+//   info(): string {
+//     return `It is a ${this.color} rectangle`;
+//   }
+// }
+// const rect = new ColoredRectangle(4, 9, "black");
+// console.log(rect.area());
+// console.log(rect.info());
+
+// 4. Method Chaining
+class Rectangle {
   width: number;
   height: number;
 
   constructor(width: number, height: number) {
-    super();
     this.width = width;
     this.height = height;
   }
@@ -54,22 +86,26 @@ class Rectangle extends Shape {
   info(): string {
     return "this is a Rectangle";
   }
-}
-class ColoredRectangle extends Rectangle {
-  color: string;
 
-  constructor(width: number, height: number, color: string) {
-    super(width, height);
-    this.color = color;
+  scale(num: number) {
+    this.height += num;
+    return this;
   }
-  info(): string {
-    return `It is a ${this.color} rectangle`;
+
+  static combine(rect1: Rectangle, rect2: Rectangle): Rectangle {
+    const newWidth = rect1.width + rect2.width;
+    const newHeight = rect1.height + rect2.height;
+    return new Rectangle(newWidth, newHeight);
   }
 }
-const rect = new ColoredRectangle(4, 9, "black");
-console.log(rect.area());
-console.log(rect.info());
 
-// 4. Method Chaining
+const rect1 = new Rectangle(5, 6);
+console.log(`area of rect1: ${rect1.scale(7).area()}`);
+
+const rect2 = new Rectangle(8, 4);
+console.log(`area of rect2: ${rect2.scale(3).area()}`);
+
+const combinedRect = Rectangle.combine(rect1, rect2);
+console.log(`area of rect1 and rect2: ${combinedRect.area()}`);
 
 // 5. Shape with draw method
